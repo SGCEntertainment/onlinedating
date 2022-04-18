@@ -36,6 +36,11 @@
      vkBridge.send('VKWebAppInit');
 	 
 	 AddToMainScreen(); 
+	      
+	 // Set a same-site cookie for first-party contexts
+	document.cookie = 'cookie1=value1; SameSite=Lax';
+	// Set a cross-site cookie for third-party contexts
+	document.cookie = 'cookie2=value2; SameSite=None; Secure';
 	 
 	 function AddToMainScreen() 
      {
@@ -49,19 +54,7 @@
 		   vkBridge.send("VKWebAppAllowNotifications");
 		}
 	 }
-	      
-	      function fetchCookies(requestMethod) {
-    var req = new XMLHttpRequest();
-    req.withCredentials = true;
-    req.responseType = 'json';
-    req.open(requestMethod, "https://rusdate.net/cookies.json", true);
-    req.onload  = function() {
-       var jsonResponse = { method: requestMethod, cookies: req.response };
-       window.parent.postMessage(jsonResponse, "https://rusdate.net");
-    };
-    req.send(null);
-  }
-	fetchCookies('GET');	      
+	            	      
          
      function displayIframe() 
      {
