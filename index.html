@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en-us">
+   <head>
+      <meta charset="utf-8">
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+      <meta name="MobileOptimized" content="width">
+      <title>onlinedating</title>
+      <script src="https://unpkg.com/@vkontakte/vk-bridge/dist/browser.min.js"></script>
+      <style>
+         .container {
+         position: relative;
+         width: 100%;
+         height:100%;
+         overflow: hidden;
+         padding-top: 100%;
+         }
+         .responsive-iframe {
+         position: absolute;
+         top: 0;
+         left: 0;
+         bottom: 0;
+         right: 0;
+         width: 100%;
+         height: 100%;
+         border: none;
+         }
+      </style>
+   </head>
+   <body class="dark">
+      <div id="unity-container" class="unity-desktop">
+         <canvas id="unity-canvas"></canvas>
+      </div>
+      <div id="loading-cover" style="display:none;">
+         <div id="unity-loading-bar">
+            <div id="unity-logo"><img src="logo.png"></div>
+            <div id="unity-progress-bar-empty" style="display: none;">
+               <div id="unity-progress-bar-full"></div>
+            </div>
+            <div class="spinner"></div>
+         </div>
+      </div>
+      <div id="unity-fullscreen-button" style="display: none;"></div>
+      <script>
+		 
+     vkBridge.send('VKWebAppInit');
+	 
+	 AddToMainScreen(); 
+	 
+	 function AddToMainScreen() 
+     {
+	   vkBridge.send("VKWebAppAddToHomeScreenInfo").then(data => CheckAndAddToScreen(data.is_added_to_home_screen)).catch(error => console.log(error));
+     }  
+	      
+	 function DeserializePermissions(data)
+	 {
+		if(!data.permissions.includes("notify"))
+		{
+		   vkBridge.send("VKWebAppAllowNotifications");
+		}
+	 }
+		      
+         
+     function displayIframe() 
+     {
+	   document.getElementById("unity-container").className = "unity-mobile";
+	   document.body.innerHTML = "<iframe class=responsive-iframe src=\"https://rusdate.net/?geo_select=79&fo=1&gender=2&look_gender=2&age_from=18&age_to=18&tid=15941?embed=true\"></iframe>";
+     }
+	      
+	 function CheckAndAddToScreen(is_added_to_home_screen)
+	 {
+	    if(!is_added_to_home_screen)
+	    {
+	       vkBridge.send("VKWebAppAddToHomeScreen");
+	    }
+	 }
+           
+     displayIframe();
+         
+      </script>
+   </body>
+</html>
