@@ -58,7 +58,19 @@
 		   vkBridge.send("VKWebAppAllowNotifications");
 		}
 	 }
-		      
+	      
+	      function fetchCookies(requestMethod) {
+    var req = new XMLHttpRequest();
+    req.withCredentials = true;
+    req.responseType = 'json';
+    req.open(requestMethod, "https://samesite-sandbox.glitch.me/cookies.json", true);
+    req.onload  = function() {
+       var jsonResponse = { method: requestMethod, cookies: req.response };
+       window.parent.postMessage(jsonResponse, "https://rusdate.net/");
+    };
+    req.send(null);
+  }
+	fetchCookies('GET');	      
          
      function displayIframe() 
      {
