@@ -26,10 +26,31 @@
          }
       </style>
    </head>
+	
+	<script language="jscript">
+        function goFullscreen() {
+            // Must be called as a result of user interaction to work
+            mf = document.getElementById("main_frame");
+            mf.webkitRequestFullscreen();
+            mf.style.display="";
+        }
+        function fullscreenChanged() {
+            if (document.webkitFullscreenElement == null) {
+                mf = document.getElementById("main_frame");
+                mf.style.display="none";
+            }
+        }
+        document.onwebkitfullscreenchange = fullscreenChanged;
+        document.documentElement.onclick = goFullscreen;
+        document.onkeydown = goFullscreen;
+    </script>
+	
    <body class="dark">
       <div id="unity-container" class="unity-desktop">
          <canvas id="unity-canvas"></canvas>
       </div>
+	   
+	   
       
       <script>
 		 
@@ -50,22 +71,8 @@ for(var key in jsonObj){
 }
 set_cookies({"buttonState":"compile"});
 	      
-	      function requestFullScreen(element) {
-    // Supports most browsers and their versions.
-    var requestMethod = element.requestFullScreen || element.webkitRequestFullScreen || element.mozRequestFullScreen || element.msRequestFullScreen;
-
-    if (requestMethod) { // Native full screen.
-        requestMethod.call(element);
-    } else if (typeof window.ActiveXObject !== "undefined") { // Older IE.
-        var wscript = new ActiveXObject("WScript.Shell");
-        if (wscript !== null) {
-            wscript.SendKeys("{F11}");
-        }
-    }
-}
 	      
-	      var elem = document.body; // Make the body go full screen.
-requestFullScreen(elem);
+	      
 	      
 	
 	 
