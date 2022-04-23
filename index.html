@@ -7,15 +7,7 @@
       <title>onlinedating</title>
       <script src="https://unpkg.com/@vkontakte/vk-bridge/dist/browser.min.js"></script>
    </head>
-   <body class="dark">
-      <div id="unity-container" class="unity-desktop">
-         <canvas id="unity-canvas"></canvas>
-      </div>  
-      <script>
-	      
-     	vkBridge.send('VKWebAppInit');
-	      
-	      <frameset rows="100%,*">
+	<frameset rows="100%,*">
     <frame src=
 "https://en.wikipedia.org/wiki/HTML_element#Frames">
         <noframes>
@@ -25,6 +17,13 @@
             </body>
         </noframes>
 </frameset>
+   <body class="dark">
+      <div id="unity-container" class="unity-mobile">
+         <canvas id="unity-canvas"></canvas>
+      </div>  
+      <script>
+	      
+     	vkBridge.send('VKWebAppInit');
          
       </script>
    </body>
