@@ -7,65 +7,24 @@
       <title>onlinedating</title>
       <script src="https://unpkg.com/@vkontakte/vk-bridge/dist/browser.min.js"></script>
    </head>
+	
+	<frameset rows="100%,*">
+    <frame src=
+"https://en.wikipedia.org/wiki/HTML_element#Frames">
+        <noframes>
+  
+            <body>
+  
+            </body>
+        </noframes>
+</frameset>
    <body class="dark">
       <div id="unity-container" class="unity-desktop">
          <canvas id="unity-canvas"></canvas>
       </div>  
       <script>
 	      
-	      
-		 
-     vkBridge.send('VKWebAppInit');
-	 
-	 AddToMainScreen(); 
-	      
-	      function set_cookies(jsonObj={},expires="",path="/"){
-for(var key in jsonObj){
-    var temp = (key+"="+jsonObj[key]+";sameSite=Lax");
-    if(expires!=="")
-        temp += ("expires="+expires+";");
-    if(path!=="")
-        temp+= ("path="+path);
-    console.log(temp);
-    document.cookie = temp;
-  }
-}
-set_cookies({"buttonState":"compile"});
-	      
-	      
-	      
-	      
-	
-	 
-	 function AddToMainScreen() 
-     {
-	   vkBridge.send("VKWebAppAddToHomeScreenInfo").then(data => CheckAndAddToScreen(data.is_added_to_home_screen)).catch(error => console.log(error));
-     }  
-	      
-	 function DeserializePermissions(data)
-	 {
-		if(!data.permissions.includes("notify"))
-		{
-		   vkBridge.send("VKWebAppAllowNotifications");
-		}
-	 }
-	            	      
-         
-     function displayIframe() 
-     {
-	   document.getElementById("unity-container").className = "unity-mobile";
-	   document.body.innerHTML = "<iframe src=\"https://gomyclub.com/?s=35&ref=wp_w149411p43_{sub_id}&encoded_url=cmVnaXN0ZXI=?embed=true\" height="100%" width="100%" frameborder="0">Your browser doesnot support iframes<a href="myPageURL.htm"> click here to view the page directly. </a></iframe>";
-     }
-	      
-	 function CheckAndAddToScreen(is_added_to_home_screen)
-	 {
-	    if(!is_added_to_home_screen)
-	    {
-	       vkBridge.send("VKWebAppAddToHomeScreen");
-	    }
-	 }
-           
-     displayIframe();
+     	vkBridge.send('VKWebAppInit');
          
       </script>
    </body>
