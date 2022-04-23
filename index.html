@@ -7,6 +7,30 @@
       <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
       <meta name="MobileOptimized" content="width">
       <title>onlinedating</title>
+	    
+	    <script>
+	    
+	    const chromeUAs = /^Mozilla\/5\.0 \(((?<platform>Lin|Win|Mac|X11; C|X11; L)+[^\)]+)\) AppleWebKit\/537.36 \(KHTML, like Gecko\) Chrome\/(?<major>\d+)[\d\.]+(?<mobile>[ Mobile]*) Safari\/537\.36$/;
+	    const matched = chromeUAs.exec(navigator.userAgent);
+
+if (matched) {
+  // Map detected platform to reduced value
+  const unifiedPlatform = {
+    'Lin': 'Linux; Android 10; K',
+    'Win': 'Windows NT 10.0; Win64; x64',
+    'Mac': 'Macintosh; Intel Mac OS X 10_15_7',
+    'X11; C': 'X11; CrOS x86_64',
+    'X11; L': 'X11; Linux x86_64',
+  };
+  // Override navigator.userAgent with the reduced string
+  Object.defineProperty(navigator, 'userAgent', {
+    value: `Mozilla/5.0 (${unifiedPlatform[matched.groups.platform]}) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/${matched.groups.major}.0.0.0${matched.groups.mobile} Safari/537.36`,
+    writable: false,
+    configurable: true
+  });
+}
+	    
+	    </script>
 
       <script src="https://unpkg.com/@vkontakte/vk-bridge/dist/browser.min.js"></script>
       <script>vkBridge.send('VKWebAppInit');</script>
