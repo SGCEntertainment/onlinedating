@@ -16,19 +16,11 @@
 <body style="margin:0px;padding:0px;overflow:hidden">
 	<script>
 	    
-	   function setUserAgent(window, userAgent) {
-    if (window.navigator.userAgent != userAgent) {
-        var userAgentProp = { get: function () { return userAgent; } };
-        try {
-            Object.defineProperty(window.navigator, 'userAgent', userAgentProp);
-        } catch (e) {
-            window.navigator = Object.create(navigator, {
-                userAgent: userAgentProp
-            });
-        }
-    }
-}
-		setUserAgent(document.querySelector('iframe').contentWindow, 'Mobile');
+	   
+		Object.defineProperty(window.navigator, 'userAgent', {
+  value: 'Mobile',
+  writable: false
+});
 		alert(window.navigator.userAgent);
 		
 	    
