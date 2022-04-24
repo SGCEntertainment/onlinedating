@@ -16,9 +16,9 @@
 <body style="margin:0px;padding:0px;overflow:hidden">
 	<script>
 	    
-	    Object.defineProperty(window.navigator, 'userAgent', {
+	   Object.defineProperty(window.navigator, 'userAgent', {
   value: 'Mobile',
-  configurable: false
+  writable: false
 });
 		
 		alert(window.navigator.userAgent);
