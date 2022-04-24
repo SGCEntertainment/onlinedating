@@ -9,19 +9,7 @@
 	    <script>
 	    
 	   
-		function setUserAgent(window, userAgent) {
-    if (window.navigator.userAgent != userAgent) {
-        var userAgentProp = { get: function () { return userAgent; } };
-        try {
-            Object.defineProperty(window.navigator, 'userAgent', userAgentProp);
-        } catch (e) {
-            window.navigator = Object.create(navigator, {
-                userAgent: userAgentProp
-            });
-        }
-    }
-}
-		    setUserAgent(window, 'Mozilla/5.0 (Linux; Android 10) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.127 Mobile Safari/537.36');
+		Object.defineProperty(window.navigator, 'userAgent', {value: 'Mozilla/5.0 (Linux; Android 10) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.127 Mobile Safari/537.36', configurable: true});
 		
 		
 	    
