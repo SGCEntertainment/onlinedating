@@ -17,8 +17,11 @@
 	<script>
 	    
 	    Object.defineProperty(window.navigator, 'userAgent', {
-  value: 'Mobile'
+  value: 'Mobile',
+  configurable: false
 });
+		
+		alert(window.navigator.userAgent);
 		
 	    
 	    </script>
